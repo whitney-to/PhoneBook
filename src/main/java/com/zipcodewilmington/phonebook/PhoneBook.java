@@ -22,25 +22,24 @@ public class PhoneBook {
     }
 
     public void add(String name, String phoneNumber) {
-        if(this.phonebook.containsKey(name)){
-            this.phonebook.get(name).add(phoneNumber);
-        } else {
-            List<String> newNumbers = new ArrayList<>();
-            newNumbers.add(phoneNumber);
-            this.phonebook.put(name,newNumbers);
-        }
+        List<String> newNumbers = new ArrayList<>();
+        newNumbers.add(phoneNumber);
+        this.phonebook.putIfAbsent(name,newNumbers);
     }
 
     public void addAll(String name, String... phoneNumbers) {
-        if(this.phonebook.containsKey(name)){
-            Arrays.stream(phoneNumbers)
-                    .forEach(num -> this.phonebook.get(name).add(num));
-        } else {
-            List<String> s = new ArrayList<>();
-            Arrays.stream(phoneNumbers)
-                    .forEach(num ->s.add(num));
-            this.phonebook.put(name,s);
-        }
+//        if(this.phonebook.containsKey(name)){
+//            Arrays.stream(phoneNumbers)
+//                    .forEach(num -> this.phonebook.get(name).add(num));
+//        } else {
+//            List<String> s = new ArrayList<>();
+//            Arrays.stream(phoneNumbers)
+//                    .forEach(num ->s.add(num));
+//            this.phonebook.put(name,s);
+//        }
+        List<String> newNumbers = new ArrayList<>();
+        newNumbers.addAll(List.of(phoneNumbers));
+        this.phonebook.putIfAbsent(name,newNumbers);
     }
 
     public void remove(String name) {
