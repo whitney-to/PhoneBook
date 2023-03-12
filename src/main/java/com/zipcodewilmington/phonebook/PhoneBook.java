@@ -18,6 +18,7 @@ public class PhoneBook {
 
     public PhoneBook() {
         this.phonebook = new HashMap<>();
+        //this(new LinkedHashMap<>()) //=> calling the above constructor passing in linked hashmap
     }
 
     public void add(String name, String phoneNumber) {
